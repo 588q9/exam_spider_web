@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="force-rendering" content="webkit">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+
+    <title></title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <meta name="applicable-device" content="pc">
+
+    <link rel="stylesheet" href="/static/home/css/common/common.css?time=1594968946&version=1">
+    <link rel="stylesheet" href="/static/home/css/common/header-aside-footer.css?time=1628864457&version=1">
+    <link rel="stylesheet" href="/static/home/css/common/swiper.css?time=1612493509&version=1">
+    <script  src="/static/home/lib/jquery1.11.1.min.js"></script>
+    <script  src="/static/home/lib/jquery.cookie.js"></script>
+    <script  src="/static/home/lib/jquery.form.js"></script>
+    <!--[if gte IE 7]>
+    <script  src="/static/home/lib/html5shiv.js"></script>
+    <![endif]-->
+    <script  src="/static/home/lib/respond.min.js"></script>
+    <script  src="/static/home/js/common/swiper.min.js"></script>
+
+</head>
+
+<link rel="stylesheet" href="/static/home/css/detail/common-detail.css?time=1609312072&version=1">
+<link rel="stylesheet" href="/static/home/css/detail/directory_detail.css?time=1617675838&version=1">
+
+<body>
+<div class="error-msg"></div>
+<!--登陆 模板 start-->
+<div class="register-mask-dialog">
+    <div class="abs register-dialog-content">
+        <div class="close"></div>
+        <!--注册账号-->
+        <div class="register-content register-dialog-list">
+            <p class="register-dialog-title">注册账号</p>
+            <form action="/user/register" id="m-register-form" method="post"  data-checkbtn="register">
+                <div class="login-form-phone">
+                    <label class="input">
+                        <input type="text" data-checkbtn="register" name="mobile" id="tel-input" class="tel-inp" axlength="11" placeholder="请输入手机号码">
+                    </label>
+                    <div class="cl get-code-wrap">
+                        <input class="fl code-inp" autocomplete="off" type="text" name="code" id="code"  maxlength="8" placeholder="请输入短信验证码">
+                        <div class="fr get-code disabled" data-code-type="register" data-scene="register">获取短信验证码</div>
+                    </div>
+                </div>
+                <p class="login-agreement-wrap chose">
+                    <span class="register-agreement-text dis-middle"> 已阅读并同意库课网校</span>
+                    <a href="/help/term" target="_blank">《用户协议》</a><a href="/help/policy" target="_blank">《售后政策》</a><a href="/help/privacy">《隐私政策》</a>
+                </p>
+                <div class="login-btn">
+                    <input type="hidden" name="scene" value="register">
+                    <button type="submit" class="disabled">注册</button>
+                </div>
+            </form>
+        </div>
+
+        <!--验证码登录-->
+        <div class="login-code-content register-dialog-list">
+            <p class="register-dialog-title cl">
+                <span class="login-type-controller login-type-code fl active">快捷登录</span>
+                <span class="login-type-controller login-type-password fl">密码登录</span>
+            </p>
+            <form id="c-submit-form" action="/user/login" method="post"  data-checkbtn="loginCode">
+                <input type="hidden" name="scene" value="login"/>
+                <div class="login-form">
+                    <div class="login-form-phone">
+                        <label class="input-wrap">
+                            <input type="text" data-checkbtn="loginCode" name="mobile" maxlength="11" id="tel-input-login" class="tel-inp" placeholder="请输入手机号码">
+                        </label>
+                        <div class="cl get-code-wrap">
+                            <input class="fl code-inp" autocomplete="off" type="text" name="code" id="login-code"  maxlength="8" placeholder="请输入短信验证码">
+                            <div class="fr get-code disabled" data-code-type="login" data-scene="login">获取短信验证码</div>
+                        </div>
+                        <p class="login-agreement-wrap chose">
+                            <span class="register-agreement-text dis-middle"> 已阅读并同意库课网校</span>
+                            <a href="/help/term" target="_blank">《用户协议》</a><a href="/help/policy" target="_blank">《售后政策》</a><a href="/help/privacy">《隐私政策》</a>
+                        </p>
+
+                    </div>
+
+                    <button class="disabled login-btn login-code-btn" type="submit">登录</button>
+
+                    <div class="cl remember-wrap">
+                        <div class=" register-controller">注册账号</div>
+                    </div>
+
+                    <div class="login-link">
+                        <div class="login-link-title rel">
+                            <p class="login-link-title-line"></p>
+                            <p class="login-link-title-text">其他方式登录</p>
+                        </div>
+                        <ul>
+                            <li class="oauth_btn" oauth-type="Weixin"></li>
+                            <li class="oauth_btn" oauth-type="QQ"></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!--密码登录-->
+        <div class="login-pw-content register-dialog-list">
+            <p class="register-dialog-title cl">
+                <span class="login-type-controller login-type-code fl">快捷登录</span>
+                <span class="login-type-controller login-type-password fl active">密码登录</span>
+            </p>
+
+            <form id="mp-login-form" action="/user/login" method="post" data-checkbtn="loginPw">
+                <div class="login-form ">
+
+                    <label class="login-form-password">
+                        <input type="text" data-checkbtn="loginPw" name="mobile" maxlength="11" id="tel-input-password" class="tel-inp" placeholder="请输入手机号码">
+                    </label>
+                    <label class="login-form-password">
+                        <input type="password" name="password" class="pw-inp" id="password" placeholder="请输入密码">
+                    </label>
+
+                    <div class="cl remember-wrap">
+                        <div class="fl">
+                           <!-- <div class="dis-middle remember-pw">
+                                <span class="dis-middle">记住密码&nbsp;&nbsp;|&nbsp;</span>
+                            </div>-->
+                            <div class="dis-middle forgot-password" style="margin-bottom: 24px">忘记密码？</div>
+                        </div>
+
+                    </div>
+                    <button type="submit" class="login-btn login-pw-btn disabled">登录</button>
+                    <div class="cl remember-wrap">
+
+
+                        <div class=" register-controller">注册账号</div>
+                    </div>
+                    <div class="login-link">
+                        <div class="login-link-title rel">
+                            <p class="login-link-title-line"></p>
+                            <p class="login-link-title-text">其他方式登录</p>
+                        </div>
+                        <ul>
+                            <li class="oauth_btn" oauth-type="Weixin"></li>
+                            <li class="oauth_btn" oauth-type="QQ"></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <!--找回密码-->
+        <div class="find-pw-content register-dialog-list">
+            <p class="register-dialog-title cl">找回密码</p>
+
+            <form id="fpwd-check-form" action="/user/check_sms_code" method="post" data-checkbtn="findPw">
+                <div class="login-form ">
+                    <input type="hidden" name="scene" value="find_password">
+                    <label class="login-form-password">
+                        <input type="text" data-checkbtn="findPw" name="mobile" maxlength="11" id="tel-input-getpw" class="tel-inp" placeholder="请输入手机号码">
+                    </label>
+                    <div class="cl get-code-wrap mb53">
+                        <input class="code-inp" autocomplete="off" type="text" name="code" id="getpw" placeholder="请输入短信验证码">
+
+                        <div class="fr code-btn disabled get-code " data-code-type="find-pw" data-scene="find_password">获取验证码</div>
+                    </div>
+                    <button type="submit" class="login-btn disabled login-submit login-getpw">确定</button>
+                </div>
+            </form>
+        </div>
+        <!--设置密码-->
+        <div class="set-pw-content register-dialog-list">
+            <p class="register-dialog-title cl">设置密码</p>
+
+            <form id="fpwd-submit-form" action="/user/find_password" method="post" data-checkbtn="setPw">
+                <div class="login-form ">
+                    <label class="login-form-repw">
+                        <input type="password" autocomplete="off" id="set-password" class="pw-inp"
+                               name="password" maxlength="20" placeholder="8-20位数字+英文新密码">
+                    </label>
+                    <label class=" ">
+                        <input type="password" autocomplete="off" id="reset-password" name="re_password" class="pw-inp mb53"
+                               maxlength="20" placeholder="再次输入新密码">
+                    </label>
+                    <div class="login-btn submit-repw">
+                        <button type="submit" class="disabled">确定</button>
+                    </div>
+                </div>
+                <input type="hidden" name="mobile" value="">
+                <input type="hidden" name="code" value="">
+            </form>
+
+        </div>
+        <!--绑定手机号-->
+        <div class="bind-phone-content register-dialog-list" >
+            <p class="register-dialog-title cl">绑定手机号</p>
+
+            <form id="bind-phone-form" action="/user/bind_phone" method="post"  data-checkbtn="bindPhone">
+                <div class="login-form ">
+
+                    <label class="login-form-password">
+                        <input type="text" data-checkbtn="bindPhone" name="mobile" maxlength="11" id="tel-input-bind" class="tel-inp" placeholder="请输入手机号码">
+                    </label>
+                    <div class="cl get-code-wrap mb53">
+                        <input class="code-inp" autocomplete="off" type="text" name="code" id="bind" placeholder="请输入短信验证码">
+
+                        <div class="fr code-btn disabled get-code " data-code-type="bind-phone" data-scene="bind_phone">获取验证码</div>
+                    </div>
+                    <p class="login-agreement-wrap chose">
+                        <span class="register-agreement-text dis-middle"> 已阅读并同意库课网校</span>
+                        <a href="/help/term" target="_blank">《用户协议》</a><a href="/help/policy" target="_blank">《售后政策》</a><a href="/help/privacy">《隐私政策》</a>
+                    </p>
+                    <button type="submit" class="login-btn disabled login-submit login-getpw">确定</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--登陆 模板 end-->
+<!--无痕验证-->
+<div id="cn-wrap" class=" ">
+    <div id="_nc">
+        <div class="nc-close"></div>
+        <div id="captcha"></div>
+    </div>
+</div>
+<script type="text/javascript" src="/static/home/js/common/aliyun_check.js?time=1593766615&version=1"></script>
+<script src="//g.alicdn.com/sd/nvc/1.1.112/guide.js"></script>
+
+
+
+<header>
+    <div class="header-container cl">
+        <div class="fl cl">
+            <a href="/" class="top-logo fl" title="库课网校">
+                <h1>                <img src="/static/home/img/common/logo-header.png" alt="库课网校">
+                </h1>            </a>
+            <ul class="fl  top-nav">
+                <li class="" ><a href="/" rel="nofollow">首页</a></li>
+                <li class=""  ><a href="/live/index" rel="nofollow">直播日历</a></li>
+
+                <li class="" ><a href="/news" rel="nofollow">资讯</a></li>
+                <li class="" ><a href="/free" rel="nofollow">免费专区</a></li>
+            </ul>
+            <!--  个人中心、帮助中心、关于我们页面 全国热线展示-->
+<!--             <div class="fr hot-tel">全国热线：400-6529-888</div>-->
+           <!--  首页、列表页、详情页、资讯 搜索框展示-->
+            <div class="fl rel search">
+                <div class="search-wrap">
+                    <form   action="/search" method="GET" id="header_search_form">
+                        <input autocomplete="off" class="search-inp" name="keyword" type="text" placeholder="河南专升本">
+                    </form>
+                    <div id="header_search_btn" class="search-icon">
+                        <img src="/static/home/img/index/icon-search.png" alt="">
+                    </div>
+                </div>
+                <div class="select-hot-wrap abs">
+                    <p class="hot-title">热门搜索</p>
+                    <ul class="select-hot-word">
+                                                <li><a href="/search?keyword=专升本" target="_blank"><span>1</span>专升本</a></li>
+                                                <li><a href="/search?keyword=教师招聘" target="_blank"><span>2</span>教师招聘</a></li>
+                                                <li><a href="/search?keyword=教师资格" target="_blank"><span>3</span>教师资格</a></li>
+                                                <li><a href="/search?keyword=河南专升本" target="_blank"><span>4</span>河南专升本</a></li>
+                                                <li><a href="/search?keyword=山东专升本" target="_blank"><span>5</span>山东专升本</a></li>
+                                                                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="fr header-register-wrap">
+            <a href="/app" target="_blank" class="app-down" rel="nofollow">APP下载</a>
+
+                        <!--已登录-->
+            <ul class=" login header-logined-wrap">
+                 <li class="ucenter-btn">
+                     <a href="/ucenter/course" rel="nofollow">
+                         <span class="user-img">
+                         <img src="https://img.kuke99.com/static/common/img/stu-default-v2.png" alt="">
+                         </span>
+                         <span class="user-text">18926946194</span></a>
+                 </li>
+                 <li class="exit rel">
+                     <a href="/user/logout" class="logout">
+                     <img src="/static/home/img/common/icon-exit.png" alt="">
+                     </a>
+                 </li>
+             </ul>
+
+        </div>
+    </div>
+    <div class="header-container cl">
+        <div class="fl stock-code"></div>
+
+
+
+    </div>
+</header>
+
+
+
+
+<section class="container">
+    <input type="hidden" id="goods_type" value="1" data-id="2175" share-title="河南专升本经济学真题考场" share-url="https://www.kuke99.com/exam/2175.html" share-img="/upload_files/new6/exam/main/20211111/7ba2fc1e3ec64e92cc0ca4545268d228.png">
+    <div class="root">
+
+    </div>
+    <div class="cl classify-wrap">
+        <div class="fl classify-left">
+            <div class="classify-left-top">
+                <h1 class="classify-title">【专升本】河南专升本经济学真题考场</h1>
+                <p class="classify-subtitle">河南专升本经济学真题考场</p>
+                <p class="classify-num">
+                    题库内容：<span class="content-num">共2套试卷</span>
+                    <span class="content-num">已完成0套</span>
+                </p>
+                <p class="classify-validity">有 效 期：365天</p>
+
+            </div>
+            <div class="classify-bottom">
+                <div class="share-wrap dis-middle">
+                    <span class="share-title dis-middle">分享</span>
+                    <div class="share-list bdsharebuttonbox dis-middle" data-tag="share_1">
+                        <a class="share-btn bds_weixin" data-cmd="weixin"></a>
+                        <a class="share-btn bds_sqq" data-cmd="sqq"></a>
+                        <a class="share-btn bds_tsina" data-cmd="tsina"></a>
+                    </div>
+                </div>
+                <span class="share-border dis-middle">|</span>
+                <div class="collect-drop-wrap dis-middle">
+                    <!--已收藏 添加类名 active-->
+                    <div class="dis-middle collect-drop-controller collect  ">收藏</div>
+
+                    <div class="dis-middle collect-drop-controller drop-tips">退课须知</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="fr classify-right rel">
+
+
+            <div class="price-tags-wrap bought-price-tags">
+                <div class="btn btn-red JS-do-exam" data-id="2175" data-is_sell="1">开始做题</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--滚动 固定 fixed-->
+    <div class="fixed-title cl">
+        <!--下边有几个title分类就添加类名  list1 2 3 4 其中一个-->
+        <div class="fl cl title-list-wrap list1">
+
+            <span class="title-list">试卷目录</span>
+        </div>
+        <div class="fr fixed-title-right">
+            <div class="btn btn-red fixed-buy">开始做题</div>
+        </div>
+
+    </div>
+    <div class="cl detail-content">
+        <!--左侧内容-->
+        <div class="fl detail-content-left">
+
+            <div class="detail-content-title">
+                <!--下边有几个title分类就添加类名  list1 2 3 4 其中一个-->
+                <p class="cl list1">
+                    <span class="title-list">试卷目录</span>
+                </p>
+            </div>
+
+            <!--试卷目录-->
+            <div class="title-target content-main-title-wrap">
+                <span class="content-main-title">试卷目录</span>
+            </div>
+                        <div class="exam-directory-list-wrap">
+
+        <div class="directory-list exam-directory-list last-status"
+         data-id="15518"
+         data-exam-id="2175"
+         data-live_exam="0"
+         data-live_end="0"
+         data-live_start="0"
+         data-live_exam_url=""
+         data-exam_url="https://www.kuke99.com/testing?result=0&amp;exam_id=2175&amp;id=15518"
+         data-is_buy="1"
+         data-study_status="1"
+         data-is_sell="1">
+        <div class="fl exam-directory-title-wrap"  >
+                        <div class="dis-middle play-status">
+                                <img src="/static/home/img/detail/icon-exam-last.png" alt="">
+                            </div>
+                        <div class="dis-middle exam-directory-title">2020年河南专升本经济学考试试题</div>
+        </div>
+        <div class="fr">
+            <div class="dis-middle times-wrap">
+                <span>题数 73</span>
+                <span>总分 150</span>
+                                <span>进行中</span>
+                            </div>
+            <div class="dis-middle icon-open"></div>
+        </div>
+    </div>
+        <div class="directory-list exam-directory-list "
+         data-id="15473"
+         data-exam-id="2175"
+         data-live_exam="0"
+         data-live_end="0"
+         data-live_start="0"
+         data-live_exam_url=""
+         data-exam_url="https://www.kuke99.com/testing?result=0&amp;exam_id=2175&amp;id=15473"
+         data-is_buy="1"
+         data-study_status="0"
+         data-is_sell="1">
+        <div class="fl exam-directory-title-wrap"  >
+                        <div class="dis-middle exam-directory-title">2021年河南专升本经济学考试试题</div>
+        </div>
+        <div class="fr">
+            <div class="dis-middle times-wrap">
+                <span>题数 78</span>
+                <span>总分 150</span>
+                            </div>
+            <div class="dis-middle icon-open"></div>
+        </div>
+    </div>
+    </div>
+
+
+        </div>
+
+        <!--好课推荐-->
+
+        <!--好课推荐-->
+        <div class="fr detail-content-right">
+    <div class="recommend-title">
+        <p>同类好课</p>
+    </div>
+    <div class="recommend-content">
+
+                <a class="content-item" target="_blank" href="https://www.kuke99.com/classroom/1414.html">
+            <div class="content-img rel">
+                <img src="https://img.kuke99.com/upload_files/new6/classroom/20210602/dca1a3b81b3dcad6d1985e99a3ed2973.png" alt="2022年河南专升本VIP高端班《英语+生理病理解剖学》">
+                <div class="abs tags-mask">录播套餐</div>
+            </div>
+            <div class="content-text-wrap">
+                <p class="content-text-title text-line2">2022年河南专升本VIP高端班《英语+生理病理解剖学》</p>
+
+                <div class="cl">
+
+
+                    <div class="price-wrap fr">
+                                                ￥<span>2499</span>
+                                            </div>
+                </div>
+            </div>
+        </a>
+                <a class="content-item" target="_blank" href="https://www.kuke99.com/classroom/1412.html">
+            <div class="content-img rel">
+                <img src="https://img.kuke99.com/upload_files/new6/classroom/20210602/6cbf0f58621937fc4f6319a8e464eb40.png" alt="2022年河南专升本VIP高端班《英语+教育理论》">
+                <div class="abs tags-mask">录播套餐</div>
+            </div>
+            <div class="content-text-wrap">
+                <p class="content-text-title text-line2">2022年河南专升本VIP高端班《英语+教育理论》</p>
+
+                <div class="cl">
+
+
+                    <div class="price-wrap fr">
+                                                ￥<span>2499</span>
+                                            </div>
+                </div>
+            </div>
+        </a>
+                <a class="content-item" target="_blank" href="https://www.kuke99.com/classroom/1410.html">
+            <div class="content-img rel">
+                <img src="https://img.kuke99.com/upload_files/new6/classroom/20210602/00c7ee0da07fb666d3e6960302502f72.png" alt="2022年河南专升本VIP高端班《英语+高等数学》">
+                <div class="abs tags-mask">录播套餐</div>
+            </div>
+            <div class="content-text-wrap">
+                <p class="content-text-title text-line2">2022年河南专升本VIP高端班《英语+高等数学》</p>
+
+                <div class="cl">
+
+
+                    <div class="price-wrap fr">
+                                                ￥<span>2499</span>
+                                            </div>
+                </div>
+            </div>
+        </a>
+                <a class="content-item" target="_blank" href="https://www.kuke99.com/classroom/1408.html">
+            <div class="content-img rel">
+                <img src="https://img.kuke99.com/upload_files/new6/classroom/20210602/1a9a50977f91fade957affcc5af72e79.png" alt="2022年河南专升本VIP高端班《英语+大学语文》">
+                <div class="abs tags-mask">录播套餐</div>
+            </div>
+            <div class="content-text-wrap">
+                <p class="content-text-title text-line2">2022年河南专升本VIP高端班《英语+大学语文》</p>
+
+                <div class="cl">
+
+
+                    <div class="price-wrap fr">
+                                                ￥<span>2499</span>
+                                            </div>
+                </div>
+            </div>
+        </a>
+                <a class="content-item" target="_blank" href="https://www.kuke99.com/classroom/1406.html">
+            <div class="content-img rel">
+                <img src="https://img.kuke99.com/upload_files/new6/classroom/20210602/1057e50f09cbb440a7e56046667afbdf.png" alt="2022年河南专升本VIP高端班《英语+管理学》">
+                <div class="abs tags-mask">录播套餐</div>
+            </div>
+            <div class="content-text-wrap">
+                <p class="content-text-title text-line2">2022年河南专升本VIP高端班《英语+管理学》</p>
+
+                <div class="cl">
+
+
+                    <div class="price-wrap fr">
+                                                ￥<span>2499</span>
+                                            </div>
+                </div>
+            </div>
+        </a>
+            </div>
+</div>
+    </div>
+
+    <!--弹窗-->
+    <div class="dialog-mask">
+        <!--退课须知-->
+        <div class="dialog-main-content drop-dialog">
+    <div class="dialog-main-title rel">
+        <span>退课须知</span>
+        <div class="dialog-main-close close"></div>
+    </div>
+    <div class="dialog-main-text-wrap">
+        <img src="/static/home/img/detail/drop-tips.png" alt="">
+        <div class="statement-comment">
+            <h6 class="statement-title">退课方式</h6>
+            <div class="statement-table-wrap">
+                <p>由于本网站课程为电子服务虚拟产品，故退款比例遵循如下：<br/><span class="red-color"> 自付款成功开始算起 "t=购买课程时间"</span></p>
+
+                <table>
+                    <tr>
+                        <td>t<=3小时</td>
+                        <td>全额</td>
+                    </tr>
+                    <tr>
+                        <td>3小时&lt;t<=24小时</td>
+                        <td>80%</td>
+                    </tr>
+                    <tr>
+                        <td>24小时&lt;t<=48小时</td>
+                        <td>50%</td>
+                    </tr>
+                    <tr>
+                        <td>48小时&lt;t<=72小时</td>
+                        <td>20%</td>
+                    </tr>
+                    <tr>
+                        <td>超过72小时</td>
+                        <td>不予退款</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="statement-annotation">
+                <h6 class="statement-title">注意事项</h6>
+                <p><span class="dis-top">1)</span> <span class="dis-top">退款只支持微信、支付宝等方式购买的网课，通过学习卡充值充值购买不予退款，题库、单课时、激活码购买不支持退款。</span></p>
+                <p><span class="dis-top">2)</span> <span class="dis-top">购买网课中附送教材的，教材不予退还，退款时将扣除图书全额费用与运费。</span></p>
+                <p><span class="dis-top">3)</span> <span class="dis-top">通过苹果设备购买，因苹果平台规则设置问题，无法进行退款，用户请谨慎下单。</span></p>
+                <p><span class="dis-top">4)</span> <span class="dis-top">退款申请提交后请保持联系方式畅通，我们会尽快与您确认信息。</span></p>
+                <p><span class="dis-top">5)</span> <span class="dis-top">参与活动特价（包括但不限于团购、秒杀）购买的课程不予退款。</span></p>
+                <p><span class="dis-top">6)</span> <span class="dis-top">申请退款后，完成退款流程，金额将在15个工作日内退款至你的账号。</span></p>
+                <p><span class="dis-top">7)</span> <span class="dis-top"> 二次退款须知：用户首次购买某一课程/套餐后发起退款，适用正常退款规则；二次购买同一课程或者含有该课程的套餐，发起退款后审核期为30个工作日，同时将扣除实际支付金额的30% 。</span></p>
+                <p><span class="dis-top">8)</span> <span class="dis-top">实物商品退款说明：</span></p>
+                <p class="sub-text">a.若用户发起退款的商品中，包含实物商品，并且在退款到账前，用户已签收实物商品，那么在实施退款时，用户将承担“自购买至退款”过程中所有物流费用，该费用将从原退款金额中进行扣除（库课网校将实物商品寄给用户的物流费用默认为10元）。若寄回的商品物流费用，用户在寄出时已完成支付，库课网校将不会扣除已支付的物流费用。</p>
+                <p class="sub-text">b.实物商品或包含实物的商品，在库课网校收到实物后，将应退款项原路退至用户的支付账户中。</p>
+
+                <p><span class="dis-top">附:</span> <span class="dis-top">库课网校视频课程观看包含有效期限，请您购买后在有效期限内进行学习，因个人原因导致课程过期，库课网校不提供退款服务，敬请谅解。</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <!--拼团玩法-->
+        <div class="dialog-main-content group-rule-dialog">
+    <div class="dialog-main-title rel">
+        <span>库拼团玩法</span>
+        <div class="dialog-main-close close"></div>
+    </div>
+    <div class="dialog-main-text-wrap">
+        <img src="/static/home/img/detail/group-rule.png" alt="">
+        <div class="statement-comment ">
+            <h6 class="statement-title">选择心仪商品</h6>
+            <p>在首页或者库拼团活动页，选择您心仪的商品。</p>
+            <h6 class="statement-title">开团或者参团</h6>
+            <p>您可以独立开团，也可以选择已开的团进行参团，支付成功后，等待系统通知您拼团结果。</p>
+            <h6 class="statement-title">拼团成功</h6>
+            <p>参团人数在拼团时限内达到指定人数即视为拼团成功，套餐、课程、题库类订单进入已完成状态，可开始学习；图书等实物类商品进入待发货状态，请耐心等待物流送货。</p>
+            <h6 class="statement-title">拼团失败及售后</h6>
+            <p>团员超出1人时，不可申请退款。超出拼团时限未拼团成功，订单会自动进入退款流程，您已支付款项会原路退回。拼团成功后申请售后的，按照公司正常售后政策处理。</p>
+        </div>
+    </div>
+</div>
+        <!--购买-->
+        <div class="dialog-main-content buy-dialog">
+    <div class="dialog-main-title rel">
+                <span>购买题库</span>
+
+        <div class="dialog-main-close close"></div>
+    </div>
+    <div class="dialog-main-text-wrap">
+        <p class="buy-title">河南专升本经济学真题考场</p>
+        <p class="buy-price">
+                            <span>免费</span>
+                                    </p>
+    </div>
+    <div class="dialog-btn-wrap">
+        <div class="dis-middle dialog-btn ok JS_buy_now" goods-id="2175" goods-type="1" >确定</div>
+        <div class="dis-middle dialog-btn cancel close">取消</div>
+    </div>
+
+</div>
+
+    </div>
+</section>
+
+
+<footer>
+    <div class="home-footer-top">
+        <div class="container">
+            <div class="cl ">
+                <div class="footer-logo-wrap fl">
+                    <div class="footer-logo">
+                        <img src="/static/home/img/common/logo-footer.png" alt="库课网校">
+                    </div>
+                    <a href="/app" class="down-load-app">移动库课</a>
+                </div>
+                <ul class="site-map fl">
+                    <li class="title">关于我们</li>
+                    <li><a href="/about/intro" target="_blank" rel="nofollow">关于我们</a></li>
+                    <li><a href="/about/contact" target="_blank" rel="nofollow">联系我们</a></li>
+                    <!-- <li><a href="/about/join_us" target="_blank" rel="nofollow">加入我们</a></li> -->
+                    <li><a href="/help/legal_notice" target="_blank" rel="nofollow">法律声明</a></li>
+                    <li><a href="/sitemap.html" target="_blank">网站地图</a></li>
+                </ul>
+                <ul class="site-map fl">
+                    <li class="title">帮助中心</li>
+                    <li><a href="/help/question" target="_blank" rel="nofollow">支付问题</a></li>
+                    <li><a href="/help/policy" target="_blank" rel="nofollow">售后政策</a></li>
+                    <li><a href="/help/term" target="_blank" rel="nofollow">用户协议</a></li>
+                    <li><a href="/help/asked_question" target="_blank">常见问题</a></li>
+                </ul>
+                <ul class="site-map fl">
+                    <li class="title">商务合作</li>
+                    <li><a href="/about/institution" target="_blank">机构合作</a></li>
+                    <!--<li><a href="/about/distribution" target="_blank">分销代理</a></li>-->
+<!--                    <li><a href="/about/teacher" target="_blank">讲师合作</a></li>-->
+                </ul>
+                <ul class="site-map fl">
+                    <li class="title">产品中心</li>
+                    <li><a href="/category/p0_1_p4_3" target="_blank">在线课程</a></li>
+                    <li><a href="/category/p0_1_p4_1" target="_blank">精品题库</a></li>
+                    <li><a href="/category/p0_1_p4_4" target="_blank">图书超市</a></li>
+                    <li><a href="/app" target="_blank">应用下载</a></li>
+                </ul>
+                <ul class="qrcode-wrap cl fl">
+                    <li>
+                        <div class="img-wrap"><img src="/static/home/img/common/gw.png" alt="库课网校官方微信"></div>
+                        <p>库课官方微信</p>
+                    </li>
+                    <li>
+                        <div class="img-wrap"><img src="/static/home/img/common/app.png" alt="库课网校app下载"></div>
+                        <p>库课APP下载</p>
+                    </li>
+                </ul>
+            </div>
+                    </div>
+    </div>
+    <div class="home-footer-bottom">
+        <div>
+
+            <!-- <p class="footer-address">中国 · 郑州 金水区花园路与丰产路交叉口新世纪大厦2号楼四楼 0371-55906508 全国服务热线：400-6529-888</p> -->
+            <p class="footer-address">
+                <p> 北京（总部）：北京市海淀区马连洼北路8号C座四层406-B115 联系电话400-6529-888</p>
+                <p>郑州地址：郑州市金水区花园路与丰产路交叉口新世纪大厦2号楼四楼 联系电话： 0371-55906508</p>
+            </p>
+            <p class="footer-copy">Copyright ©2019-2020 KUKE99库课网校 课程内容版权均归 库课网校 <a href="/sitemap.xml">网站地图</a> 所有 <a href="http://beian.miit.gov.cn/" rel="nofollow">豫ICP备16025169号-1</a></p>
+        </div>
+        <a class="footer-img" target="cyxyv" href="https://v.yunaq.com/certificate?domain=www.kuke99.com&from=label&code=90040"> <img src="https://aqyzmedia.yunaq.com/labels/label_sm_90040.png"></a>
+    </div>
+</footer>
+
+
+
+<aside>
+
+        <!--详情页没有上边的div布局-->
+
+    <ul>
+        <li class="aside-zx" onclick="contactService()">
+            <div class="aside-img"></div>
+        </li>
+        <li class="aside-tel">
+            <div class="aside-img"></div>
+            <div class="abs aside-tel-num">400-6529-888</div>
+        </li>
+        <li class="aside-wx">
+            <div class="aside-img"></div>
+            <div class="abs aside-qrcode">
+                <img src="/static/home/img/common/gw.png" alt="">
+            </div>
+        </li>
+        <li class="aside-top index-aside-top">
+            <div class="aside-img"></div>
+        </li>
+    </ul>
+</aside>
+<script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1280479695'%3E%3C/span%3E%3Cscript src='https://s4.cnzz.com/z_stat.php%3Fid%3D1280479695' type='text/javascript'%3E%3C/script%3E"));</script>
+<script>
+    document.getElementById("cnzz_stat_icon_1280479695").style.display = "none"
+</script>
+</body>
+
+<script>
+    (function (w, d, n, a, j) {
+        w[n] = w[n] || function () {
+            (w[n].a = w[n].a || []).push(arguments);
+        };
+        j = d.createElement('script');
+        j.async = true;
+
+        var js_url;
+        var suffix;
+        js_url = 'https://qiyukf.com/script/63bd8952f58bbc54f13b2142585c095b.js';
+        suffix = '';
+                suffix = '';
+
+            j.src = js_url + suffix;
+            d.body.appendChild(j);
+        })(window, document, 'ysf');
+
+    // 用户登录后
+        ysf('config', {
+        uid: "2979332",
+        name: '2979332',
+        groupid: 481019712    });
+
+
+    //sdk 初始化
+    ysf('onready', function() {
+        ysf('open',function () {
+        });
+        qi_goods();
+    });
+
+    //主动触发调起客服
+    function contactService() {
+        ysf('open', {
+            // 消息默认模板
+        });
+        qi_goods();
+    }
+
+
+    //主动触发分流调起客服
+    function contactShuntService(group_id) {
+        ysf('reset');
+        //定时器
+        ysf('config', {
+            groupid: group_id,
+            success:function(){
+                setTimeout(function () {
+                    ysf('open')
+                }, 1100);
+            }
+        });
+        qi_goods();
+    }
+
+    //存在商品信息 可以发送商品信息
+    function qi_goods() {
+        //商品详情页信息
+            }
+
+    $('.logout').click(function () {
+        ysf('logoff')
+    })
+
+</script>
+<script  src="/static/home/js/common/login-search.js?time=1617693718&version=1"></script>
+
+<!--分页-->
+<script  src="/static/home/js/common/jquery.pagination.js?time=1593766615&version=1"></script>
+<script  src="/static/home/js/detail/goods_buy.js?time=1597919523&version=1"></script>
+<script  src="/static/home/js/detail/common_detail.js?time=1624962593&version=1"></script>
+<script  src="/static/home/js/detail/exam.js?time=1617675838&version=1"></script>
+
+
+
+<script>
+    (function(){
+        var  bp  =  document.createElement('script');
+        var  curProtocol  =  window.location.protocol.split(':')[0];
+        if  (curProtocol  ===  'https'){
+            bp.src  =  'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else{
+            bp.src  =  'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var  s  =  document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp,  s);
+    })();
+</script>
+
+<script>
+    (function(){
+        var  src  =  "https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";
+        document.write('<script  src="'  +  src  +  '"  id="sozz"><\/script>');
+    })();
+</script>
+<script>
+    var  _hmt  =  _hmt  ||  [];
+    (function()  {
+        var  hm  =  document.createElement("script");
+        hm.src  =  "https://hm.baidu.com/hm.js?f86355e338e36ac89f23044f342c637b";
+        var  s  =  document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm,  s);
+    })();
+</script>
+
+
+</html>
